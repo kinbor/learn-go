@@ -1,3 +1,3 @@
-github.com/kinbor/learn-gomod v0.0.0-20200320095241-cfc5a201c2fe h1:4u5IwGfeOMta6P4Jwkbc8Qk2dRuMAOwKIo43rJdawGk=
-github.com/kinbor/learn-gomod/one/gcrypto v0.0.0-20200320095241-cfc5a201c2fe h1:FMHGAOemgV5RlfYNzpOVf/spnF3GHN7ArNliKUonrGI=
-github.com/kinbor/learn-gomod/one/gcrypto v0.0.0-20200320095241-cfc5a201c2fe/go.mod h1:2f0tjXYRDZXYxTc+FpC6yMBFPbHnRNqmaIhDUDvHNPs=
+github.com/kinbor/learn-gomod v0.0.0-20200320102548-dd11b20a8604 h1:ez1wUeZS0qtap+IlTUFXBRhyjBNOi5fLMQJhqRtB/QA=
+github.com/kinbor/learn-gomod/one/gcrypto v0.0.0-20200320102548-dd11b20a8604 h1:qsU0oW3XX1HmJ314/bRoJgXYeTg2S1eZr9VM9gxyTso=
+github.com/kinbor/learn-gomod/one/gcrypto v0.0.0-20200320102548-dd11b20a8604/go.mod h1:2f0tjXYRDZXYxTc+FpC6yMBFPbHnRNqmaIhDUDvHNPs=
