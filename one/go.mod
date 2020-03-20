@@ -1,4 +1,4 @@
-module github.com/kinbor/learn-gomod/one
+module testOne
 
 go 1.14
 
