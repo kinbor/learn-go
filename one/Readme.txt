@@ -22,15 +22,31 @@
         github.com/kinbor/learn-gomod/test.v1 v1.0.0-20141024135613-dd632973f1e7
         github.com/kinbor/learn-gomod/test.v2 v2.9.1
         github.com/kinbor/learn-gomod/test.v2 <=v2.2.1
-        github.com/kinbor/learn-gomod/test v0.0.0-20160109021039-d7bb493dee3e
+        github.com/kinbor/learn-gomod/test v0.0.0-20160109021039-d7bb493dee3e   //版本号-日期-CommitId
         github.com/kinbor/learn-gomod/test latest
+        github.com/kinbor/learn-gomod/test 分支名称
     b.版本升级
         go get -u 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)
         go get -u=patch 将会升级到最新的修订版本
         go get package@version 将会升级到指定的版本号version
-3.3.vendor
-    go mod vendor 会复制modules下载到vendor中, 只会下载你代码中引用的库，而不是go.mod中定义全部的module。
+    c.查看依赖包版本更新信息
+        go list -u -m all
 
-4.回忆go test的使用方法
-5.练习aes算法
-6.练习base64编解码
+4.学习go mod下的指令
+4.1.go mod downlaod：下载依赖的module到cache目录
+4.2.go mod graph：打印module依赖图
+4.3.go mod init：在当前目录初始化一个新module
+4.4.go mod tidy：增加丢失的module，删掉未使用的module
+4.5.go mod vendor：从cache目录里复制代码引用的module库到vendor目录里
+4.6.go mod verify：验证依赖module
+4.7.go mod why：解释为什么需要依赖
+4.8.go mod edit：通过命令行或终端工具设置go.mod
+
+5.回忆go test的使用方法
+5.1.运行当前目录及所有子目录下的测试用例：go test ./...
+5.2.运行指定目录及所有子目录下的测试用例：go test foo/...
+5.3.运行指定前缀的测试用例：go test foo...
+5.4.运行GOPATH下的所有测试用例：go test ...
+
+6.练习aes算法
+7.练习base64编解码
