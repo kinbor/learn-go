@@ -6,7 +6,7 @@ import (
 	"crypto/cipher"
 	"errors"
 
-	//"github.com/kinbor/learn-gomod/one/gcrypto/gtest"
+	"github.com/kinbor/learn-gomod/one/gcrypto/gtest"
 )
 
 var (
@@ -14,7 +14,7 @@ var (
 )
 
 func Encrypt(plainText []byte, key []byte, iv ...[]byte)([]byte, error){
-	//gtest.PrintText()
+	gtest.PrintText()
 	return EncryptCBC(plainText, key, iv...)
 }
 

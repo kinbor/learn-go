@@ -2,8 +2,24 @@
 1.练习go mod依赖包管理的使用
 2.练习go mod同一个module不同包的引用方式
 3.练习go mod不同module包的引发方式，以及包与包的引用关系
-3.1.注意事项：gaes.go文件里注释掉的gtest引用，以及gtest.PrintText()方法的调用，运行gcrypto包里的main.go不需要注释掉；若运行gcrypto包同一级的main.go需要注释掉，否则报错。
+3.1.注意事项：
+    a.关于gaes.go文件里注释掉的gtest引用，以及gtest.PrintText()方法的调用
+        1).本地模式
+            1.one/go.mod配置如下
+                module testONE
+                go 1.14
+                require github.com/kinbor/learn-gomod/one/gcrypto v0.0.0
+                repalce github.com/kinbor/learn-gomod/one/gcrypto => ./gcrypto
+
+            2.one/gcrypto/go.mod配置如下
+                module gcrypto
+                go 1.14
+            3.one/gcrypto/gaes/gaes.go注释的引用改为“gcrypto/gtest”
+
+            在完成上述三处修改后，运行gcrypto包里的main.go，gaes/gaes.go的引用不需要注释掉；若运行gcrypto包同一级的main.go需要注释掉，否则报错。
+        2).域名模式
+            在现有文件配置下，直接运行即可。
+
 4.回忆go test的使用方法
 5.练习aes算法
 6.练习base64编解码
-1

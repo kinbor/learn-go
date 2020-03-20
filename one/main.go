@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"encoding/base64"
 	
-	"github.com/kinbor/learn-gomod/one/gcrypto"
+	"github.com/kinbor/learn-gomod/one/gcrypto/gaes"
 )
 
 func main()  {
