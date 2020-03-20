@@ -1,0 +1,4 @@
+# github.com/kinbor/learn-gomod/one/gcrypto v0.0.0-20200320102548-dd11b20a8604
+## explicit
+github.com/kinbor/learn-gomod/one/gcrypto/gaes
+github.com/kinbor/learn-gomod/one/gcrypto/gtest
