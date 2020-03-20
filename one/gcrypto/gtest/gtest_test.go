@@ -3,7 +3,7 @@ package gtest_test
 import (
 	"testing"
 	
-	"gcrypto/gtest"
+	"github.com/kinbor/learn-gomod/one/gcrypto/gtest"
 )
 
 func TestPrintText(t *testing.T){

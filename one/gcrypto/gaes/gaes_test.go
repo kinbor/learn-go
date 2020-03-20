@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"gcrypto/gaes"
+	"github.com/kinbor/learn-gomod/one/gcrypto/gaes"
 )
 
 var (
