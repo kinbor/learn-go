@@ -162,3 +162,9 @@
 
 9.练习aes算法
 10.练习base64编解码
+11.对外暴露的方法应当增加注释使用说明，具体格式如下
+    // Add result=num1 +num2
+    // format:MethodName+WhiteSpace+...
+    func Add(num1 int, num2 int) result int{
+        return num1 + num2
+    }
