@@ -29,7 +29,7 @@ func EncryptCBC(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	}
 
 	blockSize := block.BlockSize()
-	plainText = PKCS5Padding(plainText, blockSize)
+	plainText = PKCS7Padding(plainText, blockSize)
 	ivValue := ([]byte)(nil)
 	if len(iv) > 0 {
 		ivValue = iv[0]
@@ -69,20 +69,20 @@ func DecryptCBC(cipherText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	blockModel := cipher.NewCBCDecrypter(block, ivValue)
 	plainText := make([]byte, len(cipherText))
 	blockModel.CryptBlocks(plainText, cipherText)
-	plainText, err2 := PKC5UnPadding(plainText, blockSize)
+	plainText, err2 := PKC7UnPadding(plainText, blockSize)
 	if err2 != nil {
 		return nil, err2
 	}
 	return plainText, nil
 }
 
-func PKCS5Padding(src []byte, blockSize int) []byte {
+func PKCS7Padding(src []byte, blockSize int) []byte {
 	padding := blockSize - len(src)%blockSize
 	padText := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(src, padText...)
 }
 
-func PKC5UnPadding(src []byte, blockSize int) ([]byte, error) {
+func PKC7UnPadding(src []byte, blockSize int) ([]byte, error) {
 	length := len(src)
 	if blockSize <= 0 {
 		return nil, errors.New("invalid blockSize")
