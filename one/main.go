@@ -9,9 +9,9 @@ import (
 
 func main() {
 	content := []byte("1234567890")
-	key_16 := []byte("1234567891234567")
+	key16 := []byte("1234567891234567")
 
-	data, err := gaes.Encrypt(content, key_16)
+	data, err := gaes.Encrypt(content, key16)
 	if err != nil {
 		fmt.Println(err)
 	} else {
