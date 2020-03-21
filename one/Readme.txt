@@ -16,7 +16,7 @@
         3.one/gcrypto/gaes/gaes.go注释的引用改为“gcrypto/gtest”
         在完成上述三处修改后，运行gcrypto包里的main.go，gaes/gaes.go的引用不需要注释掉；若运行gcrypto包同一级的main.go需要注释掉，否则报错。
     c.域名模式
-        在现有文件配置下，直接运行即可。
+        在现有文件配置便是域名模式，直接运行即可。
 3.2.版本号
     a.合法格式
         github.com/kinbor/learn-gomod/test.v1 v1.0.0-20141024135613-dd632973f1e7
@@ -48,5 +48,15 @@
 5.3.运行指定前缀的测试用例：go test foo...
 5.4.运行GOPATH下的所有测试用例：go test ...
 
-6.练习aes算法
-7.练习base64编解码
+6.回忆go fmt的使用方法
+6.1.go fmt相当于gofmt -l -w，前者是后者的封装，实际运行的是后者
+6.2.go fmt参数
+    a.-n参数，它会告诉go fmt把需要进行代码格式优化的文件打印出来，但是不会执行格式化
+    b.-x参数，它会告诉go fmt去执行代码格式优化作业，完成格式化后将文件名称打印出来
+6.3.使用方法
+    a.go fmt -x会将当前目录下的*.go文件代码格式化
+    b.go fmt -x ./...会将当前目录以及子目录（同一个module）下的*.go文件代码格式化。如果子目录属于另外一个module则不会对其*.go文件进行代码格式化
+    c.go fmt xxxx.go会将当前指定的文件代码格式化
+
+7.练习aes算法
+8.练习base64编解码
