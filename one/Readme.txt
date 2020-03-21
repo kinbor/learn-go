@@ -138,6 +138,27 @@
     b.GOPATH=xxxx设置gopath
     c.GOPROXY=https://goproxy.io或https://goproxy.cn配置golang代理
     d.Path=golang安装包的安装bin目录
+8.3.VSCode环境配置
+    a.安装Go for Visual Studio Code插件
+    b.VSCode会提示安装golang开发调试等相关的程序，按照提示安装即可。大致包含以下程序：
+        01.dlv.exe
+        02.fillstruct.exe
+        03.go-outline.exe
+        04.go-symbols.exe
+        05.gocode-gomod.exe
+        06.gocode.exe
+        07.godef.exe
+        08.godoctor.exe
+        09.golint.exe
+        10.gomodifytags.exe
+        11.gopkgs.exe
+        12.goplay.exe
+        13.gorename.exe
+        14.goreturns.exe
+        15.gotests.exe
+        16.guru.exe
+        17.impl.exe
+    c.调试程序：在VSCode里调试程序与VS中调试相差不大。首先在代码行的开头部分点击加断点，F5运行调试，调试依赖第二步里的相关插件。
 
 9.练习aes算法
 10.练习base64编解码
