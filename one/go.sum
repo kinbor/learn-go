@@ -1,0 +1,5 @@
+github.com/kinbor/learn-go v0.0.0-20200321071138-598079ce3273 h1:tnsQlg44Pyby8otA8a3S9l1t1i0mzfwCfamZzm0jcYI=
+github.com/kinbor/learn-go/one/gcrypto v0.0.0-20200321071138-598079ce3273 h1:/sztnak3KKVhAYel+4pGI0DNLfbOkMQamwSxoyMgoFw=
+github.com/kinbor/learn-go/one/gcrypto v0.0.0-20200321071138-598079ce3273/go.mod h1:rs/VJNDRW+xMSFlDk6Sr7d7i4zLnHuHYL0NlKvZWioQ=
+github.com/pkg/profile v1.4.0 h1:uCmaf4vVbWAOZz36k1hrQD7ijGRzLwaME8Am/7a4jZI=
+github.com/pkg/profile v1.4.0/go.mod h1:NWz/XGvpEW1FyYQ7fCx4dqYBLlfTcE+A9FLAkNKqjFE=
