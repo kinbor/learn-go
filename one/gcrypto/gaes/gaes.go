@@ -6,7 +6,7 @@ import (
 	"crypto/cipher"
 	"errors"
 
-	"github.com/kinbor/learn-gomod/one/gcrypto/gtest"
+	"github.com/kinbor/learn-go/one/gcrypto/gtest"
 )
 
 var (

@@ -1,3 +1,3 @@
-# learn-gomod
+# learn-go
 
-此项目主要为了记录学习使用go module的过程.
+此项目主要为了记录学习使用golang的过程.

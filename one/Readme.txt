@@ -15,8 +15,8 @@
         1.one/go.mod配置如下
             module testONE
             go 1.14
-            require github.com/kinbor/learn-gomod/one/gcrypto v0.0.0
-            replace github.com/kinbor/learn-gomod/one/gcrypto => ./gcrypto
+            require github.com/kinbor/learn-go/one/gcrypto v0.0.0
+            replace github.com/kinbor/learn-go/one/gcrypto => ./gcrypto
         2.one/gcrypto/go.mod配置如下
             module gcrypto
             go 1.14
@@ -28,12 +28,12 @@
     a.版本号格式
         v(major).(minor).(patch)=v(主版本号).(次版本号).(批次号)
     b.合法格式
-        github.com/kinbor/learn-gomod/test.v1 v1.0.0-20141024135613-dd632973f1e7
-        github.com/kinbor/learn-gomod/test.v2 v2.9.1
-        github.com/kinbor/learn-gomod/test.v2 <=v2.2.1
-        github.com/kinbor/learn-gomod/test v0.0.0-20160109021039-d7bb493dee3e   //版本号-日期-CommitId
-        github.com/kinbor/learn-gomod/test latest
-        github.com/kinbor/learn-gomod/test 分支名称
+        github.com/kinbor/learn-go/test.v1 v1.0.0-20141024135613-dd632973f1e7
+        github.com/kinbor/learn-go/test.v2 v2.9.1
+        github.com/kinbor/learn-go/test.v2 <=v2.2.1
+        github.com/kinbor/learn-go/test v0.0.0-20160109021039-d7bb493dee3e   //版本号-日期-CommitId
+        github.com/kinbor/learn-go/test latest
+        github.com/kinbor/learn-go/test 分支名称
     c.版本升级
         go get -u 将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)，仅当前目录
         go get -u ./...将会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)，当前目录及子目录，不包含测试依赖

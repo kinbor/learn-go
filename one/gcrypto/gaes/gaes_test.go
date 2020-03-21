@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/kinbor/learn-gomod/one/gcrypto/gaes"
+	"github.com/kinbor/learn-go/one/gcrypto/gaes"
 )
 
 var (
