@@ -24,9 +24,24 @@
         在完成上述三处修改后，运行gcrypto包里的main.go，gaes/gaes.go的引用不需要注释掉；若运行gcrypto包同一级的main.go需要注释掉，否则报错。
     c.域名模式
         在现有文件配置便是域名模式，直接运行即可。
+    d.注意事项
+        1.不同版本的导入路径
+            import (
+                "github.com/eddycjy/mquote/v2/example"
+            )
+            如上示例，导入的路径里多了一个"v2"。Go modules 在主版本号为 v0 和 v1 的情况下省略了版本号，而在主版本号为 v2 及以上则需要明确指定出主版本号，否则会出现冲突。
+        2.版本号哪里来的
+            平时使用github/gitlab/gitee等版本管理工具的时候，不太在意这个东西，其实就是Tag标签，具体如何操作自行搜索。
+
 1.4.2.版本号
     a.版本号格式
-        v(major).(minor).(patch)=v(主版本号).(次版本号).(批次号)
+        v(major).(minor).(patch)=v(主版本号).(次版本号).(修订号)
+        1.主版本号：当你做了不兼容的 API 修改
+        2.次版本号：当你做了向下兼容的功能性新增
+        3.修订号：当你做了向下兼容的问题修正
+        4.版本号延伸格式
+            v(major).(minor).(patch)-xxxx
+
     b.合法格式
         github.com/kinbor/learn-go/test.v1 v1.0.0-20141024135613-dd632973f1e7
         github.com/kinbor/learn-go/test.v2 v2.9.1
