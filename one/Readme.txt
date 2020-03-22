@@ -122,23 +122,62 @@
             }()
         }
 
-7.常用指令
-    a.go build      编译包和依赖
-    b.go install    编译并安装包和依赖
-    c.go env        查看环境变量
-    d.go list       查看包和模块
-    e.go version    查看golang版本号
-    f.go tool       工具链
+7.回忆go build使用方法
+    go build是非常常用的命令，它可以启动编译，把我们的包和相关的依赖编译成一个可执行的文件。
+7.1.语法
+        go build [-o output] [-i] [build flags] [packages]
+    其中所有的参数都可以忽略，直接运行go build 命令，就会把当前目录里的文件编译到当前目录下。
+7.2.跨平台编译
+    a.使用go build更多的会进行跨平台编译，Go提供了编译链工具，可以让我们在任何一个开发平台上，编译出其他平台的可执行文件。默认情况下，都是根据我们当前的机器生成的可执行文件。
+    b.跨平台编译主要涉及到两个环境变量参数的设置：GOOS 和 GOARCH，这两个参数的取值如下表：来自https://golang.org/doc/install/source
+        GOOS        GOARCH                      GOOS        GOARCH
+        aix         ppc64                       linux	    ppc64le
+        android     386                         linux	    mips
+        android     amd64                       linux	    mipsle
+        android	    arm                         linux	    mips64
+        android	    arm64                       linux	    mips64le
+        darwin	    386                         linux	    s390x
+        darwin	    amd64                       netbsd	    386
+        darwin	    arm                         netbsd	    amd64
+        darwin	    arm64                       netbsd	    arm
+        dragonfly	amd64                       openbsd	    386
+        freebsd	    386                         openbsd	    amd64
+        freebsd	    amd64                       openbsd	    arm
+        freebsd	    arm                         openbsd	    arm64
+        illumos	    amd64                       plan9	    386
+        js	        wasm                        plan9	    amd64
+        linux	    386                         plan9	    arm
+        linux	    amd64                       solaris	    amd64
+        linux	    arm                         windows	    386
+        linux	    arm64                       windows	    amd64
+        linux	    ppc64
+    c.使用方法
+        以32位windows系统为例：GOOS=windows GOARCH=386 go build -o myCompiler_x86.exe main.go
+        以64位windows系统为例：GOOS=windows GOARCH=amd64 go build -o myCompiler_x64.exe main.go
+
+8.回忆go install使用方法
+    go install指令和go build类似，且大部分参数也通用。它只是将编译的中间文件放在GOPATH/pkg 目录下，以及固定地将编译结果放在GOPATH/bin目录下。
+8.1.语法
+        go install [-i] [build flags] [packages]
+    它和go build参数比较仅少了 -o 参数。
+8.2.用法
+    按照go build语法使用即可。
+
+9.其他指令
+    a.go env        查看环境变量
+    b.go list       查看包和模块
+    c.go version    查看golang版本号
+    d.go tool       工具链
 
 
-8.golang开发环境搭建
-8.1.下载最新的golang安装包：https://golang.google.cn/dl/
-8.2.配置环境变量：控制面板->系统->高级系统设置->环境变量
+10.golang开发环境搭建
+10.1.下载最新的golang安装包：https://golang.google.cn/dl/
+10.2.配置环境变量：控制面板->系统->高级系统设置->环境变量
     a.GO111MODULE=on开启go module
     b.GOPATH=xxxx设置gopath
     c.GOPROXY=https://goproxy.io或https://goproxy.cn配置golang代理
     d.Path=golang安装包的安装bin目录
-8.3.VSCode环境配置
+10.3.VSCode环境配置
     a.安装Go for Visual Studio Code插件
     b.VSCode会提示安装golang开发调试等相关的程序，按照提示安装即可。大致包含以下程序：
         01.dlv.exe
@@ -160,9 +199,9 @@
         17.impl.exe
     c.调试程序：在VSCode里调试程序与VS中调试相差不大。首先在代码行的开头部分点击加断点，F5运行调试，调试依赖第二步里的相关插件。
 
-9.练习aes算法
-10.练习base64编解码
-11.对外暴露的方法应当增加注释使用说明，具体格式如下
+11.练习aes算法
+12.练习base64编解码
+13.对外暴露的方法应当增加注释使用说明，具体格式如下
     // Add result=num1 +num2
     // format:MethodName+WhiteSpace+...
     func Add(num1 int, num2 int) result int{
