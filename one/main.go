@@ -3,17 +3,18 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"time"
+
+	//"time"
 
 	"github.com/kinbor/learn-go/one/gcrypto/gaes"
-	"github.com/pkg/profile"
+	//"github.com/pkg/profile"
 )
 
 func main() {
 	// 开始性能分析, 返回一个停止接口
-	stopper := profile.Start(profile.CPUProfile, profile.ProfilePath("."))
+	//stopper := profile.Start(profile.CPUProfile, profile.ProfilePath("."))
 	// 在main()结束时停止性能分析
-	defer stopper.Stop()
+	//defer stopper.Stop()
 
 	content := []byte("1234567890")
 	key16 := []byte("1234567891234567")
@@ -27,5 +28,5 @@ func main() {
 	}
 
 	// 让程序至少运行1秒
-	time.Sleep(time.Second)
+	//time.Sleep(time.Second)
 }
