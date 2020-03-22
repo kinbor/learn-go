@@ -1,7 +1,7 @@
 package main
 
-import "github.com/kinbor/learn-go/two/gnet/portUtil"
+import "github.com/kinbor/learn-go/two/gnet/portutil"
 
 func main() {
-	portUtil.ChoosePort("", 0)
+	portutil.ChoosePort("", 0)
 }

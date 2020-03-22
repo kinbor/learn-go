@@ -1,4 +1,4 @@
-package portUtil
+package portutil
 
 import "testing"
 
