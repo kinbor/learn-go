@@ -4,18 +4,12 @@ import (
 	"fmt"
 	"net"
 	"strconv"
-	"strings"
 	"time"
 )
 
 //ChoosePort 自动为服务器选择未被占用的端口
-func ChoosePort(host string, startPort int) int {
+func ChoosePort(startPort int) int {
 	myAddr := "127.0.0.1"
-	host = strings.Replace(host, " ", "", -1)
-	if len(host) > 0 || host != "" {
-		myAddr = host
-	}
-
 	myPort := 9527
 	if startPort > 1000 && startPort < 60000 {
 		myPort = startPort
