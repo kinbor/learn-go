@@ -10,28 +10,39 @@
 1.3.练习go mod相同module包的引用方式
 1.4.练习go mod不同module包的引发方式，以及包与包的引用关系
 1.4.1.引用方式：
-    a.示例：关于gaes.go文件里注释掉的gtest引用，以及gtest.PrintText()方法的调用
-    b.本地模式
-        1.one/go.mod配置如下
+    1.4.1.1.示例：关于gaes.go文件里注释掉的gtest引用，以及gtest.PrintText()方法的调用
+    1.4.1.2.本地模式
+        a.one/go.mod配置如下
             module testONE
             go 1.14
             require github.com/kinbor/learn-go/one/gcrypto v0.0.0
             replace github.com/kinbor/learn-go/one/gcrypto => ./gcrypto
-        2.one/gcrypto/go.mod配置如下
+        b.one/gcrypto/go.mod配置如下
             module gcrypto
             go 1.14
-        3.one/gcrypto/gaes/gaes.go注释的引用改为“gcrypto/gtest”
+        c.one/gcrypto/gaes/gaes.go注释的引用改为“gcrypto/gtest”
         在完成上述三处修改后，运行gcrypto包里的main.go，gaes/gaes.go的引用不需要注释掉；若运行gcrypto包同一级的main.go需要注释掉，否则报错。
-    c.域名模式
+    1.4.1.3.域名模式
         在现有文件配置便是域名模式，直接运行即可。
-    d.注意事项
-        1.不同版本的导入路径
+    1.4.1.4.注意事项
+        a.不同版本的导入路径
             import (
                 "github.com/eddycjy/mquote/v2/example"
             )
             如上示例，导入的路径里多了一个"v2"。Go modules 在主版本号为 v0 和 v1 的情况下省略了版本号，而在主版本号为 v2 及以上则需要明确指定出主版本号，否则会出现冲突。
-        2.版本号哪里来的
-            平时使用github/gitlab/gitee等版本管理工具的时候，不太在意这个东西，其实就是Tag标签，具体如何操作自行搜索。
+        b.版本号哪里来的
+            平时使用github/gitlab/gitee等版本管理工具的时候，不太在意这个东西，其实就是Tag标签。简单操作如下：
+            b1.创建
+                b1.1.TortoiseGit：右键->创建标签，在弹出框里给标签起个名字，写两句打标签的原因即可
+                b1.2.命令行工具：git tag 标签名称
+            b2.查看
+                git tag
+            b3.本地tag推上线
+                b3.1.TortoiseGit：推送的时候勾上：包含标签
+                b3.2.命令行工具：git push origin 标签名称
+            b4.删除
+                b4.1.删除本地Tag：git tag -d 标签名称
+                b4.2.删除线上Tag：git push origin :refs/tags/标签名称
 
 1.4.2.版本号
     a.版本号格式
