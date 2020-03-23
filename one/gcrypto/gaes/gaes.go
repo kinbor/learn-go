@@ -10,18 +10,21 @@ import (
 )
 
 var (
-	IVDefaultValue = "www.xlsbook.com!"
+	ivDefaultValue = "www.xlsbook.com!"
 )
 
+//Encrypt Default
 func Encrypt(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	gtest.PrintText()
 	return EncryptCBC(plainText, key, iv...)
 }
 
+//Decrypt Default
 func Decrypt(cipherText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	return DecryptCBC(cipherText, key, iv...)
 }
 
+//EncryptCBC ...
 func EncryptCBC(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -34,7 +37,7 @@ func EncryptCBC(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	if len(iv) > 0 {
 		ivValue = iv[0]
 	} else {
-		ivValue = []byte(IVDefaultValue)
+		ivValue = []byte(ivDefaultValue)
 	}
 
 	blockMode := cipher.NewCBCEncrypter(block, ivValue)
@@ -44,6 +47,7 @@ func EncryptCBC(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	return cipherText, nil
 }
 
+//DecryptCBC ...
 func DecryptCBC(cipherText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -59,7 +63,7 @@ func DecryptCBC(cipherText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	if len(iv) > 0 {
 		ivValue = iv[0]
 	} else {
-		ivValue = []byte(IVDefaultValue)
+		ivValue = []byte(ivDefaultValue)
 	}
 
 	if len(cipherText)%blockSize != 0 {
@@ -69,20 +73,22 @@ func DecryptCBC(cipherText []byte, key []byte, iv ...[]byte) ([]byte, error) {
 	blockModel := cipher.NewCBCDecrypter(block, ivValue)
 	plainText := make([]byte, len(cipherText))
 	blockModel.CryptBlocks(plainText, cipherText)
-	plainText, err2 := PKC7UnPadding(plainText, blockSize)
+	plainText, err2 := PKCS7UnPadding(plainText, blockSize)
 	if err2 != nil {
 		return nil, err2
 	}
 	return plainText, nil
 }
 
+//PKCS7Padding ...
 func PKCS7Padding(src []byte, blockSize int) []byte {
 	padding := blockSize - len(src)%blockSize
 	padText := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(src, padText...)
 }
 
-func PKC7UnPadding(src []byte, blockSize int) ([]byte, error) {
+//PKCS7UnPadding ...
+func PKCS7UnPadding(src []byte, blockSize int) ([]byte, error) {
 	length := len(src)
 	if blockSize <= 0 {
 		return nil, errors.New("invalid blockSize")
@@ -107,6 +113,7 @@ func PKC7UnPadding(src []byte, blockSize int) ([]byte, error) {
 	return src[:(length - unpadding)], nil
 }
 
+//EncryptCFB ...
 func EncryptCFB(plainText []byte, key []byte, padding *int, iv ...[]byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -119,7 +126,7 @@ func EncryptCFB(plainText []byte, key []byte, padding *int, iv ...[]byte) ([]byt
 	if len(iv) > 0 {
 		ivValue = iv[0]
 	} else {
-		ivValue = []byte(IVDefaultValue)
+		ivValue = []byte(ivDefaultValue)
 	}
 
 	stream := cipher.NewCFBEncrypter(block, ivValue)
@@ -129,6 +136,7 @@ func EncryptCFB(plainText []byte, key []byte, padding *int, iv ...[]byte) ([]byt
 	return cipherText, nil
 }
 
+//DecryptCFB ...
 func DecryptCFB(cipherText []byte, key []byte, unpadding int, iv ...[]byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -141,7 +149,7 @@ func DecryptCFB(cipherText []byte, key []byte, unpadding int, iv ...[]byte) ([]b
 	if len(iv) > 0 {
 		ivValue = iv[0]
 	} else {
-		ivValue = []byte(IVDefaultValue)
+		ivValue = []byte(ivDefaultValue)
 	}
 	stream := cipher.NewCFBDecrypter(block, ivValue)
 	plainText := make([]byte, len(cipherText))
@@ -150,12 +158,14 @@ func DecryptCFB(cipherText []byte, key []byte, unpadding int, iv ...[]byte) ([]b
 	return plainText, nil
 }
 
+//ZeroPadding ...
 func ZeroPadding(cipherText []byte, blockSize int) ([]byte, int) {
 	padding := blockSize - len(cipherText)%blockSize
 	padText := bytes.Repeat([]byte{byte(0)}, padding)
 	return append(cipherText, padText...), padding
 }
 
+//ZeroUnPadding ...
 func ZeroUnPadding(plainText []byte, unpadding int) []byte {
 	length := len(plainText)
 	return plainText[:(length - unpadding)]
