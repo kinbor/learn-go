@@ -121,12 +121,20 @@
         go tool pprof -pdf cpu.exe cpu.pprof > cpu.pdf    //使用 go tool 工具链输入 cpu.pprof 和 cpu 可执行文件，生成 PDF 格式的输出文件，将输出文件重定向为 cpu.pdf 文件。
     d.结果输出到SVG文件（依赖Graphviz）
         go tool pprof -svg cpu.exe cpu.pprof > cpu.svg    //使用 go tool 工具链输入 cpu.pprof 和 cpu 可执行文件，生成 PDF 格式的输出文件，将输出文件重定向为 cpu.svg 文件。
-    d.结果输出到PNG文件（依赖Graphviz）
+    e.结果输出到PNG文件（依赖Graphviz）
         go tool pprof -png cpu.exe cpu.pprof > cpu.png    //使用 go tool 工具链输入 cpu.pprof 和 cpu 可执行文件，生成 PDF 格式的输出文件，将输出文件重定向为 cpu.png 文件。
-    d.结果输出到TXT文件（或终端）
+    f.结果输出到TXT文件（或终端）
         go tool pprof -text cpu.exe cpu.pprof > cpu.txt   //使用 go tool 工具链输入 cpu.pprof 和 cpu 可执行文件，生成 txt 格式的输出文件，将输出文件重定向为 cpu.txt 文件。
         或
         go tool pprof -text cpu.exe cpu.pprof
+    g.输出信息列名称说明：
+        1.flat：当前函数占用 CPU 的耗时
+        2.flat%：当前函数占用 CPU 的耗时百分比
+        3.sun%：函数占用 CPU 的耗时累计百分比
+        4.cum：当前函数加上调用当前函数的函数占用 CPU 的总耗时
+        5.cum%：当前函数加上调用当前函数的函数占用 CPU 的总耗时百分比
+        6.最后一列：函数名称
+    
 6.4.Web环境
     a.如果你的go程序是用http包启动的web服务器，想要查看自己的web服务器的状态。这个时候就可以选择net/http/pprof。
     b.编码：import _ "net/http/pprof"。在浏览器中使用http://localhost:port/debug/pprof/ 直接看到当前web服务的状态，包括CPU占用情况和内存使用情况等。
