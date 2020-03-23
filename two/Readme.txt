@@ -5,6 +5,6 @@
         b2.port指定的端口号
     c.结果：若为TRUE，表示端口已开放；若为FALSE，表示端口未开放
 2.自动选择一个未被占用的端口
-    a.函数：portutil.ChoosePort(hstartPort int) int { ... }
+    a.函数：portutil.ChoosePort(startPort int) int { ... }
     b.参数：startPort指定的端口号[1001,60000]，默认9527
     c.结果：被选定的端口号
