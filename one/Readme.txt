@@ -59,9 +59,9 @@
             v(major).(minor).(patch)-xxxx
 
     b.合法格式
-        github.com/kinbor/learn-go/test.v1 v1.0.0-20141024135613-dd632973f1e7
-        github.com/kinbor/learn-go/test.v2 v2.9.1
-        github.com/kinbor/learn-go/test.v2 <=v2.2.1
+        github.com/kinbor/learn-go/test/v1 v1.0.0-20141024135613-dd632973f1e7
+        github.com/kinbor/learn-go/test/v2 v2.9.1
+        github.com/kinbor/learn-go/test/v2 <=v2.2.1
         github.com/kinbor/learn-go/test v0.0.0-20160109021039-d7bb493dee3e   //版本号-日期-CommitId
         github.com/kinbor/learn-go/test latest
         github.com/kinbor/learn-go/test 分支名称
@@ -215,6 +215,8 @@
     a.GO111MODULE=on开启go module
     b.GOPATH=xxxx设置gopath
     c.GOPROXY=https://goproxy.io或https://goproxy.cn配置golang代理
+        特别说明：可以设置多个代理，中间用逗号分隔，如https://goproxy.io,https://goproxy.cn,direct。
+        解释direct：如上设置了两个可用代理和direct,那么go get时的执行过程，首先使用xx.io代理，不行使用xx.cn代理，还不行不使用代理直连。
     d.Path=golang安装包的安装bin目录
 10.3.VSCode环境配置
     a.安装Go for Visual Studio Code插件
