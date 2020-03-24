@@ -26,8 +26,11 @@
         在现有文件配置便是域名模式，直接运行即可。
     1.4.1.4.注意事项
         a.不同版本的导入路径
+            go.mod文件
+            module github.com/kinbor/learn-go/test/v2
+            main.go文件
             import (
-                "github.com/eddycjy/mquote/v2/example"
+                "github.com/kinbor/learn-go/test/v2/example"
             )
             如上示例，导入的路径里多了一个"v2"。Go modules 在主版本号为 v0 和 v1 的情况下省略了版本号，而在主版本号为 v2 及以上则需要明确指定出主版本号，否则会出现冲突。
         b.版本号哪里来的
@@ -43,6 +46,8 @@
             b4.删除
                 b4.1.删除本地Tag：git tag -d 标签名称
                 b4.2.删除线上Tag：git push origin :refs/tags/标签名称
+        c.incompatible
+            有时候你能在 go.mod 文件中发现不兼容的标记，v3.2.1+incompatible，这是因为这个依赖包没有使用 go module，并且它通过 git 打了 tag。
 
 1.4.2.版本号
     a.版本号格式
