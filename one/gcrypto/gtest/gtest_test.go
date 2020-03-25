@@ -1,11 +1,9 @@
-package gtest_test
+package gtest
 
 import (
 	"testing"
-
-	"github.com/kinbor/learn-go/one/gcrypto/gtest"
 )
 
-func TestPrintText(t *testing.T) {
-	gtest.PrintText()
+func TestGenRandomString(t *testing.T) {
+	GenRandomString(16)
 }

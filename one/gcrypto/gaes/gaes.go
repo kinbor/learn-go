@@ -4,18 +4,31 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/rand"
 	"errors"
 
 	"github.com/kinbor/learn-go/one/gcrypto/gtest"
 )
 
 var (
-	ivDefaultValue = "www.xlsbook.com!"
+	ivDefaultValue = "u49r50nq56yj48qb"
 )
+
+//GenKeyIV ...
+func GenKeyIV(keySize int) (key, iv []byte) {
+	if keySize != 16 && keySize != 24 && keySize != 32 {
+		keySize = 16
+	}
+	rkey := make([]byte, keySize)
+	rand.Read(rkey)
+	riv := make([]byte, 16)
+	rand.Read(riv)
+	return rkey, riv
+}
 
 //Encrypt Default
 func Encrypt(plainText []byte, key []byte, iv ...[]byte) ([]byte, error) {
-	gtest.PrintText()
+	gtest.GenRandomString(16)
 	return EncryptCBC(plainText, key, iv...)
 }
 

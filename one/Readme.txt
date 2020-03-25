@@ -241,8 +241,10 @@
     c.调试程序：在VSCode里调试程序与VS中调试相差不大。首先在代码行的开头部分点击加断点，F5运行调试，调试依赖第二步里的相关插件。
 
 11.练习aes算法
-12.练习base64编解码
-13.对外暴露的方法应当增加注释使用说明，具体格式如下
+12.练习base64/hex编解码
+13.练习math/rand和crypto/rand随机函数
+14.练习strings.Build字符串拼接
+15.对外暴露的方法应当增加注释使用说明，具体格式如下
     // Add result=num1 +num2
     // format:MethodName+WhiteSpace+...
     func Add(num1 int, num2 int) result int{
