@@ -250,3 +250,69 @@
     func Add(num1 int, num2 int) result int{
         return num1 + num2
     }
+
+16.-buildmode参数
+    a.在 go build 和 go install 命令中，我们可以指定 -buildmode 参数来让编译器构建出特定的对象文件。通过命令 go help buildmode，可以看到其支持的选项：
+        -buildmode=archive
+        -buildmode=c-archive
+        -buildmode=c-shared
+        -buildmode=default
+        -buildmode=shared
+        -buildmode=exe
+        -buildmode=pie
+        -buildmode=plugin
+    b.模式说明
+        1.archive模式：构建non-main packages成 .a 文件(静态库)
+        2.c-archive模式：构建 main package 以及它所import的packages成C 静态库
+            2.1.描述信息：c-archive 也就是将 package main 中导出的方法（// export 标记）编译成 .a 文件，这样其它 c 程序就可以静态链接该文件，并调用其中的方法。
+            2.2.编译命令：go build -buildmode=c-archive add.go
+            2.3.编译结果：生成两个文件 add.a 和 add.h
+        3.c-shared模式：构建C共享库
+            3.1.描述信息：c-shared 也就是将 package main 中导出的方法（// export 标记）编译成一个动态链接库（.so 或 .dll 文件），这样其它 c 程序就可以调用其中的方法。
+            3.2.编译命令：go build -buildmode=c-shared -o add.so add.go
+            3.3.编译结果：生成两个文件 add.so 和 add.h 
+        4.default模式：把main packages构建成可执行文件，non-main packages构建成 .a 静态库
+        5.shared模式：把所有non-main packages构建成一个go 共享库，可以使用-linkshared选项进行链接
+            5.1.描述信息：shared 与 c-shared 类似，不过它是用来给 golang 构建动态链接库的。它将 非main 的package 编译为动态链接库，并在构建其他 go程序时使用 -linkshared 参数指定。
+            5.2.编译命令1：go install -buildmode=shared std //将 golang 的所有标准库 std 编译安装为 shared
+            5.3.编译命令2：go build -linkshared hello.go //再用 -linkshared 编译 hello.go
+            5.4.编译结果：生成的可执行文件体积才 20KB ，相比正常的 go build hello.go 生成的 1.9MB 小非常多
+            5.5.注意事项：如果缺少了其中某个链接库或者版本不匹配，都将导致无法正常运行，所以一般情况下这种构建模式很少使用。
+        6.exe模式： 把 main packages以及它import的任何文件，构建成可执行文件
+        7.pie模式：把 main packages以及它import的任何文件，构建成位置无关的目标文件(可重定位文件)
+            7.1.描述信息：安全性最高，即无法通过逆向工具获取到源码
+        8.plugin模式：把 main packages以及它import其他packages，构建成一个go plugin
+            8.1.描述信息：plugin 模式是 golang 1.8 才推出的一个特殊的构建方式，它将 package main 编译为一个 go 插件，并可在运行时动态加载。
+            8.2.编译命令：go build -buildmode=plugin -o greeter.so greeter.go
+            8.3.使用示例：
+                        package main
+                        import (
+                            "fmt"
+                            "os"
+                            "plugin"
+                        )
+                        
+                        type Greeter interface {
+                            Greet()
+                        }
+                        
+                        func main() {
+                            plug, err := plugin.Open("./greet/greeter.so")
+                            if err != nil {
+                                fmt.Println(err)
+                                os.Exit(1)
+                            }
+                            symGreeter, err := plug.Lookup("Greeter")
+                            if err != nil {
+                                fmt.Println(err)
+                                os.Exit(1)
+                            }
+                        
+                            var greeter Greeter
+                            greeter, ok := symGreeter.(Greeter)
+                            if !ok {
+                                fmt.Println(err)
+                                os.Exit(1)
+                            }
+                            greeter.Greet()
+                        }
