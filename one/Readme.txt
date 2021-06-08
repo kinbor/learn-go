@@ -209,16 +209,19 @@
                 set GOARCH=amd64
                 修改编译变量主要是为了编译，所以在windows环境下，一般会写成xxxx.bat文件，编译完成后再修改回修改前的变量值。
         9.1.2.基础变量：GOPATH和GOROOT。
-            a.GOPATH：设置默认的go工作目录，由于使用了go mod版本管理工具，已经不再使用。
+            a.GOPATH：设置默认的go工作目录
             b.GOROOT：go安装程序的路径
         9.1.3.代理变量：GOPROXY和GOPRIVATE。GOPROXY表示公共仓库代理，GOPRIVATE表示自己个人或机构单位自建的仓库。
             a.go1.13版本后GOPROXY默认值是：https://proxy.golang.org，这个网址在中国大陆无法访问，所以我们应该先改这个值才能愉快的开发。
             b.设置GOPRIVATE私有仓库地址，这样拉去时就不走GOPROXY了，直接走私有仓库。
             c.设置方法如下：
                     #国内可用的代理https://goproxy.io和https://goproxy.cn，https://mirrors.aliyun.com/goproxy，可以同时都设置中间逗号隔开，按顺序请求，direct表示直连proxy.golang.org
-                    set GOPROXY=“https://goproxy.io,https://goproxy.cn,direct”
+                    cmd.exe set GOPROXY=https://goproxy.io,https://goproxy.cn,direct
                     #私有仓库或组，多个用逗号相隔（可选）
-                    set GOPRIVATE=“git.mycompany.com,github.com/my/private”
+                    cmd.exe set GOPRIVATE=git.mycompany.com,github.com/my/private
+        9.1.4.go env命令操作
+            a.命令：go env，列出所有golang环境变量。
+            b.命令：go env -w，修改环境变量.例如：go env -w GOPROXY=https://goproxy.io,https://goproxy.cn,direct
     9.2.go list       查看包和模块
     9.3.go version    查看golang版本号
     9.4.go tool       工具链
@@ -227,27 +230,34 @@
 10.golang开发环境搭建
 10.1.下载最新的golang安装包：https://golang.google.cn/dl/
 10.2.配置环境变量：控制面板->系统->高级系统设置->环境变量
-    a.Path=golang安装包的安装bin目录
+    a.设置path=golang安装包的安装bin目录
+    b.设置gopath目录
+    c.设置goroot目录
+    d.配置goproxy代理
+    e.配置goprivate代理
 10.3.VSCode环境配置
     a.安装Go for Visual Studio Code插件
     b.VSCode会提示安装golang开发调试等相关的程序，按照提示安装即可。大致包含以下程序：
         01.dlv.exe
-        02.fillstruct.exe
-        03.go-outline.exe
-        04.go-symbols.exe
+        02.dlv-dap.exe
+        03.fillstruct.exe
+        04.gocode.exe
         05.gocode-gomod.exe
-        06.gocode.exe
-        07.godef.exe
-        08.godoctor.exe
-        09.golint.exe
-        10.gomodifytags.exe
+        06.godef.exe
+        07.godoctor.exe
+        08.golint.exe
+        09.gomodifytags.exe
+        10.go-outline.exe
         11.gopkgs.exe
         12.goplay.exe
-        13.gorename.exe
-        14.goreturns.exe
-        15.gotests.exe
-        16.guru.exe
-        17.impl.exe
+        13.gopls.exe
+        14.gorename.exe
+        15.goreturns.exe
+        16.go-symbols.exe
+        17.gotests.exe
+        18.guru.exe
+        19.impl.exe
+        20.staticcheck.exe
     c.调试程序：在VSCode里调试程序与VS中调试相差不大。首先在代码行的开头部分点击加断点，F5运行调试，调试依赖第二步里的相关插件。
 
 11.练习aes算法
