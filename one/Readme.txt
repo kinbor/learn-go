@@ -191,8 +191,8 @@
         linux	    arm64                       windows	    amd64
         linux	    ppc64
     c.使用方法
-        以32位windows系统为例：GOOS=windows GOARCH=386 go build -o myCompiler_x86.exe main.go
-        以64位windows系统为例：GOOS=windows GOARCH=amd64 go build -o myCompiler_x64.exe main.go
+        以32位windows系统为例(结合9.1.1操作)：go build -o myCompiler_x86.exe main.go
+        以64位windows系统为例(结合9.1.1操作)：go build -o myCompiler_x64.exe main.go
 
 8.回忆go install使用方法
     go install指令和go build类似，且大部分参数也通用。它只是将编译的中间文件放在GOPATH/pkg 目录下，以及固定地将编译结果放在GOPATH/bin目录下。
@@ -203,21 +203,31 @@
     按照go build语法使用即可。
 
 9.其他指令
-    a.go env        查看环境变量
-    b.go list       查看包和模块
-    c.go version    查看golang版本号
-    d.go tool       工具链
+    9.1.go env        查看环境变量
+        9.1.1.编译变量：GOOS和GOARCH。主要用于编译不同操作系统和CPU架构下可以运行的程序，设置方法如下：
+                set GOOS=linux
+                set GOARCH=amd64
+                修改编译变量主要是为了编译，所以在windows环境下，一般会写成xxxx.bat文件，编译完成后再修改回修改前的变量值。
+        9.1.2.基础变量：GOPATH和GOROOT。
+            a.GOPATH：设置默认的go工作目录，由于使用了go mod版本管理工具，已经不再使用。
+            b.GOROOT：go安装程序的路径
+        9.1.3.代理变量：GOPROXY和GOPRIVATE。GOPROXY表示公共仓库代理，GOPRIVATE表示自己个人或机构单位自建的仓库。
+            a.go1.13版本后GOPROXY默认值是：https://proxy.golang.org，这个网址在中国大陆无法访问，所以我们应该先改这个值才能愉快的开发。
+            b.设置GOPRIVATE私有仓库地址，这样拉去时就不走GOPROXY了，直接走私有仓库。
+            c.设置方法如下：
+                    #国内可用的代理https://goproxy.io和https://goproxy.cn，https://mirrors.aliyun.com/goproxy，可以同时都设置中间逗号隔开，按顺序请求，direct表示直连proxy.golang.org
+                    set GOPROXY=“https://goproxy.io,https://goproxy.cn,direct”
+                    #私有仓库或组，多个用逗号相隔（可选）
+                    set GOPRIVATE=“git.mycompany.com,github.com/my/private”
+    9.2.go list       查看包和模块
+    9.3.go version    查看golang版本号
+    9.4.go tool       工具链
 
 
 10.golang开发环境搭建
 10.1.下载最新的golang安装包：https://golang.google.cn/dl/
 10.2.配置环境变量：控制面板->系统->高级系统设置->环境变量
-    a.GO111MODULE=on开启go module
-    b.GOPATH=xxxx设置gopath
-    c.GOPROXY=https://goproxy.io或https://goproxy.cn配置golang代理
-        特别说明：可以设置多个代理，中间用逗号分隔，如https://goproxy.io,https://goproxy.cn,direct。
-        解释direct：如上设置了两个可用代理和direct,那么go get时的执行过程，首先使用xx.io代理，不行使用xx.cn代理，还不行不使用代理直连。
-    d.Path=golang安装包的安装bin目录
+    a.Path=golang安装包的安装bin目录
 10.3.VSCode环境配置
     a.安装Go for Visual Studio Code插件
     b.VSCode会提示安装golang开发调试等相关的程序，按照提示安装即可。大致包含以下程序：
